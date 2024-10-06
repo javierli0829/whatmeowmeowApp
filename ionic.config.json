@@ -1,0 +1,7 @@
+{
+  "name": "whatmeowmeowApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
