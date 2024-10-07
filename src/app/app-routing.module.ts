@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'transaction-input',
+    loadChildren: () => import('./transaction-input/transaction-input.module').then( m => m.TransactionInputPageModule)
+  },
 ];
 
 @NgModule({

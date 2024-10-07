@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { addCircleOutline } from 'ionicons/icons';
 
 interface TransactionItem {
   type: string;
@@ -14,7 +17,13 @@ interface TransactionItem {
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router) {
+    addIcons({ addCircleOutline });
+  }
+
+  goToTransactionInputPage(){
+    this.router.navigate(['/transaction-input']);
+  }
 
   transactionList: TransactionItem[] = [
     {type: "Test", amount: 100, description: "Test", timestamp: new Date()}
