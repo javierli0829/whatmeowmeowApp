@@ -11,21 +11,14 @@ export class TransactionInputPage {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:3000/api'; // 你的 Express API URL
+  private apiUrl = 'http://localhost:3000'; // Express API URL
 
   goBack() {
     this.router.navigate(['/home']);
   }
 
-  getUsers() {
-    this.http.get(this.apiUrl + "/users").subscribe(data => {
-      console.log(data);
-    })
-    this.addTransaction();
-  }
-
   addTransaction () {
-    this.http.post(this.apiUrl + "/users/transaction", {type: "Test", amount: 100, description: "Test", timestamp: new Date().toDateString()}).subscribe(res =>{
+    this.http.post(this.apiUrl + "/transactions/add", {type: "Test", amount: 100, description: "Test", timestamp: new Date().toDateString()}).subscribe(res =>{
       console.log('Transaction created:', res);
     },
     error => {
