@@ -22,6 +22,12 @@
   </ion-header>
 
   <ion-content color="light">
+    <ion-datetime-button datetime="datetime" (click)="openModal()"></ion-datetime-button>
+    <ion-modal [keepContentsMounted]="true" [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-datetime id="datetime" presentation="date" display-format="YYYY-MM-DD" [(ngModel)]="selectedDate" (ionChange)="onDateChange()"></ion-datetime>
+      </ng-template>
+    </ion-modal>
     <ion-list [inset]="true">
       <ion-item *ngFor='let transaction of transactionList'>
         <ion-label>{{ transaction.type }}</ion-label> <ion-label class="ion-text-right">{{ transaction.amount }}</ion-label>

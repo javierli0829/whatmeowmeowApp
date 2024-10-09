@@ -19,9 +19,15 @@ export class HomePage{
   private apiUrl = 'http://localhost:3000'; // Express API URL
 
   transactionList: TransactionItem[];
+  selectedDate: string;
 
+  isModalOpen: boolean;
+
+  // Constructor
   constructor(private router: Router, private http: HttpClient) {
+    this.selectedDate = new Date().toISOString();
     this.transactionList = [];
+    this.isModalOpen = false;
     this.getTransactions();
   }
 
@@ -29,17 +35,34 @@ export class HomePage{
     this.getTransactions();
   }
 
-  goToTransactionInputPage(){
+  // Route
+  goToTransactionInputPage() {
     this.router.navigate(['/transaction-input']);
   }
 
-  getTransactions () {
-    this.http.post(this.apiUrl + "/transactions/find", {timestamp: new Date().toISOString()}).subscribe(res =>{
+  // Service
+  getTransactions() {
+    this.http.post(this.apiUrl + "/transactions/find", {timestamp: this.selectedDate}).subscribe(res =>{
       console.log('Transaction found:', res);
       this.transactionList = res as TransactionItem[];
     },
     error => {
       console.error('Error finding transaction:', error);
     })
+  }
+
+  // UI control
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  // Event
+  onDateChange() {
+    this.getTransactions();
+    this.closeModal();
   }
 }
