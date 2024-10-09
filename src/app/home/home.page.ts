@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { addIcons } from 'ionicons';
-import { addCircleOutline } from 'ionicons/icons';
 
 interface TransactionItem {
   type: string;
@@ -16,15 +14,18 @@ interface TransactionItem {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage{
 
   private apiUrl = 'http://localhost:3000'; // Express API URL
 
+  transactionList: TransactionItem[];
+
   constructor(private router: Router, private http: HttpClient) {
-    addIcons({ addCircleOutline });
+    this.transactionList = [];
+    this.getTransactions();
   }
 
-  ngOnInit(): void {
+  ionViewWillEnter() {
     this.getTransactions();
   }
 
@@ -33,7 +34,7 @@ export class HomePage implements OnInit{
   }
 
   getTransactions () {
-    this.http.post(this.apiUrl + "/transactions/find", {timestamp: new Date().toDateString()}).subscribe(res =>{
+    this.http.post(this.apiUrl + "/transactions/find", {timestamp: new Date().toISOString()}).subscribe(res =>{
       console.log('Transaction found:', res);
       this.transactionList = res as TransactionItem[];
     },
@@ -41,6 +42,4 @@ export class HomePage implements OnInit{
       console.error('Error finding transaction:', error);
     })
   }
-
-  transactionList: TransactionItem[] = [];
 }

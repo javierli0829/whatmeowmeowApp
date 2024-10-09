@@ -21,6 +21,29 @@
     </ion-toolbar>
   </ion-header>
   <ion-content color="light">
-
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" presentation="date" [(ngModel)]="dateInput" display-format="YYYY-MM-DD"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select [(ngModel)]="typeInput" interface="alert">
+          <ion-select-option *ngFor="let type of typesCategory" [value]="type">
+            {{ type }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Amount" [(ngModel)]="amountInput"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Description" [(ngModel)]="descriptionInput"></ion-input>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-content>
