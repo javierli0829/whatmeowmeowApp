@@ -10,11 +10,11 @@ interface TransactionItem {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-account',
+  templateUrl: 'account.page.html',
+  styleUrls: ['account.page.scss'],
 })
-export class HomePage{
+export class AccountPage {
 
   private apiUrl = 'http://localhost:3000'; // Express API URL
 
@@ -38,6 +38,10 @@ export class HomePage{
   // Route
   goToTransactionInputPage() {
     this.router.navigate(['/transaction-input']);
+  }
+
+  goBack() {
+    this.router.navigate(['/overview']);
   }
 
   // Service

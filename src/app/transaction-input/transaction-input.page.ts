@@ -35,7 +35,7 @@ export class TransactionInputPage {
 
   // Route
   goBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/account']);
   }
 
   // Service

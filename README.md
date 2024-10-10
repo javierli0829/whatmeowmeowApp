@@ -16,6 +16,13 @@ Install dependencies:
 npm install
 ```
 
+## Development
+
+Generate a new page
+```bash
+ionic generate page NewPage
+```
+
 ## Running the Application
 
 1. To run the application in a web browser:
